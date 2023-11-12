@@ -14,6 +14,13 @@ app.get("/", function(req, res) {
     res.sendFile(view);
 });
 
+app.get("/now", function(req, res, next) {
+    req.time = new Date().toString();
+    next();
+}, function(req, res) {
+    res.json({ time: req.time })
+})
+
 app.get("/json", logger, function(req, res) {
     const message = process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json";
     res.json({message})
