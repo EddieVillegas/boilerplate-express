@@ -7,6 +7,8 @@ const logger = function(req, res, next) {
     next()
 }
 
+app.use(bodyParser.urlencoded({extended: false}))
+
 app.route('/name').get((req, res) => {
     const { first, last } = req?.query;
     res.json({ name: `${first} ${last}`})
