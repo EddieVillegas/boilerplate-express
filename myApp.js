@@ -7,6 +7,11 @@ const logger = function(req, res, next) {
     next()
 }
 
+app.route('/name').get((req, res) => {
+    const { firstname, lastname } = req?.query;
+    res.json({ name: `${firstname} ${lastname}`})
+})
+
 app.use('/:word/echo', (req, res) => {
     const {params: { word: echo }} = req;
     res.json({ echo });
