@@ -7,6 +7,11 @@ const logger = function(req, res, next) {
     next()
 }
 
+app.use('/:word/echo', (req, res) => {
+    const {params: { word: echo }} = req;
+    res.json({ echo });
+});
+
 app.use("/public", express.static(__dirname + "/public"))
 
 app.get("/", function(req, res) {
